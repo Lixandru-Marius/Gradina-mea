@@ -3,280 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grădina Proaspătă | Legume Bio & Abonamente</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Jurnalul Grădinii Noastre - 1000mp de Sănătate</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Outfit:wght@300;400;600&display=swap');
-        body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
-        h1, h2, h3 { font-family: 'Crimson Pro', serif; }
-        .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=1200');
-            background-size: cover; background-position: center;
+        :root {
+            --verde-solar: #2d5a27;
+            --galben-galbenele: #ffb703;
+            --verde-deschis: #e8f5e9;
+            --accent-portocaliu: #fb8500;
         }
-        /* Stil pentru produs când stocul este zero */
-        .out-of-stock {
-            opacity: 0.6;
-            filter: grayscale(0.8);
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; color: #333; line-height: 1.6; scroll-behavior: smooth; }
+        header { background: var(--verde-solar); color: white; padding: 2.5rem 1rem; text-align: center; border-bottom: 5px solid var(--galben-galbenele); }
+        nav { background: white; padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav a { margin: 0 10px; text-decoration: none; color: var(--verde-solar); font-weight: bold; font-size: 0.85rem; text-transform: uppercase; }
+        nav a:hover { color: var(--accent-portocaliu); }
+
+        .section { padding: 3rem 8%; }
+        h2 { color: var(--verde-solar); text-align: center; text-transform: uppercase; }
+
+        /* Calendar - Butoane Luni */
+        .month-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 25px; }
+        .month-btn { 
+            padding: 10px 18px; border: 2px solid var(--verde-solar); background: transparent; 
+            color: var(--verde-solar); cursor: pointer; border-radius: 20px; font-weight: bold; transition: 0.3s;
         }
-        .out-of-stock button {
-            background-color: #d1d5db !important;
-            color: #9ca3af !important;
-            border-color: #d1d5db !important;
-            cursor: not-allowed;
-        }
+        .month-btn:hover, .month-btn.active { background: var(--verde-solar); color: white; }
+
+        /* Continut Blog */
+        .blog-content { display: none; animation: fadeIn 0.5s; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .blog-content.active { display: block; }
+        .article-card { background: var(--verde-deschis); padding: 20px; border-left: 6px solid var(--galben-galbenele); border-radius: 8px; margin-bottom: 20px; }
+        
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* Galerie */
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 2rem; }
+        .photo-item { border-radius: 12px; overflow: hidden; height: 200px; background: #eee; position: relative; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .photo-item:hover img { transform: scale(1.1); }
+
+        /* Formular */
+        form { background: #fff; padding: 30px; border-radius: 10px; border: 1px solid #ddd; max-width: 500px; margin: 0 auto; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .btn { background: var(--accent-portocaliu); color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1rem; font-weight: bold; width: 100%; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        footer { background: #1a3316; color: white; text-align: center; padding: 2rem; margin-top: 3rem; }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800">
+<body>
 
-    <nav class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
-                <span class="text-2xl">🌿</span>
-                <span class="text-xl font-bold tracking-tight text-stone-900">GRĂDINA PROASPĂTĂ</span>
-            </div>
-            <div class="hidden md:flex space-x-6 font-medium">
-                <a href="#informatii" class="hover:text-green-700 transition">Informații</a>
-                <a href="#magazin" class="hover:text-green-700 transition">Legume</a>
-                <a href="#abonamente" class="hover:text-green-700 transition">Abonamente</a>
-                <a href="#recenzii" class="hover:text-green-700 transition">Recenzii</a>
-                <a href="#contact" class="hover:text-green-700 transition">Contact</a>
-            </div>
-            <button id="cartBtn" class="bg-green-700 text-white px-5 py-2 rounded-full hover:bg-green-800 transition active:scale-95">
-                Coș (<span id="cartCount">0</span>)
-            </button>
-        </div>
-    </nav>
+<header>
+    <h1>GRĂDINA NOASTRĂ</h1>
+    <p>Legume de sezon din solarul nostru de 60mp și grădina de 1000mp</p>
+</header>
 
-    <header class="hero-gradient h-[60vh] flex items-center justify-center text-center text-white">
-        <div class="px-6">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4">Direct din grădină pe masa ta.</h1>
-            <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto opacity-90 font-light">Legume 100% naturale, culese în dimineața livrării.</p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#magazin" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-bold transition">Cumpără Acum</a>
-                <a href="#abonamente" class="bg-white text-green-900 px-8 py-3 rounded-lg font-bold hover:bg-stone-100 transition">Vezi Abonamente</a>
-            </div>
-        </div>
-    </header>
+<nav>
+    <a href="#jurnal">Jurnal de Grădinar</a>
+    <a href="#galerie">Galerie Foto</a>
+    <a href="#contact">Rezervă un Coș</a>
+</nav>
 
-    <section id="informatii" class="container mx-auto px-6 py-20 border-b border-stone-200">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-4xl font-bold mb-6">Povestea Grădinii Noastre</h2>
-                <p class="text-stone-600 mb-4 leading-relaxed">
-                    Totul a început din dorința de a readuce pe masa familiilor gustul autentic al legumelor de altădată. Folosim metode de agricultură regenerativă și nu utilizăm pesticide chimice.
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-4">
-                        <span class="text-2xl text-green-700">🌱</span>
-                        <div>
-                            <h4 class="font-bold text-lg">Certificat Bio</h4>
-                            <p class="text-stone-500">Toate semințele noastre sunt organice și netratate.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <span class="text-2xl text-green-700">🚜</span>
-                        <div>
-                            <h4 class="font-bold text-lg">Producție Locală</h4>
-                            <p class="text-stone-500">Suntem o mică fermă de familie situată la doar 30km de oraș.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-stone-200 rounded-3xl h-80 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&q=80&w=800" 
-                     alt="Fermier lucrând" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </section>
-
-    <section id="magazin" class="container mx-auto px-6 py-20">
-        <h2 class="text-4xl font-bold mb-12 text-center">Produse de Sezon</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            
-            <div id="prod-rosii" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
-                <img src="https://images.unsplash.com/photo-1566385101042-1a000c1268c4?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
-                <h3 class="text-xl font-bold">Roșii Cherry Bio</h3>
-                <p class="text-stone-500 text-sm mb-1">12,00 lei/kg</p>
-                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-rosii">20</span> kg</p>
-                <button onclick="addToCart('rosii', 'Roșii Cherry')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
-            </div>
-
-            <div id="prod-morcovi" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
-                <img src="https://images.unsplash.com/photo-1590779033100-9f60705a2f3b?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
-                <h3 class="text-xl font-bold">Morcovi Dulci</h3>
-                <p class="text-stone-500 text-sm mb-1">6,50 lei/kg</p>
-                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-morcovi">20</span> kg</p>
-                <button onclick="addToCart('morcovi', 'Morcovi')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
-            </div>
-
-            <div id="prod-ardei" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
-                <img src="https://images.unsplash.com/photo-1592419044706-39796d40f98c?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
-                <h3 class="text-xl font-bold">Ardei Capia</h3>
-                <p class="text-stone-500 text-sm mb-1">15,00 lei/kg</p>
-                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-ardei">20</span> kg</p>
-                <button onclick="addToCart('ardei', 'Ardei Capia')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
-            </div>
-
-            <div id="prod-dovlecei" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
-                <img src="https://images.unsplash.com/photo-1615485245453-9f23d580a5a8?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
-                <h3 class="text-xl font-bold">Dovlecei Fragezi</h3>
-                <p class="text-stone-500 text-sm mb-1">8,00 lei/kg</p>
-                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-dovlecei">20</span> kg</p>
-                <button onclick="addToCart('dovlecei', 'Dovlecei')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="abonamente" class="py-20 bg-green-50">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-                <div class="md:w-1/2 p-10 bg-green-900 text-white">
-                    <h3 class="text-3xl font-bold mb-4 font-serif text-green-400 italic">Coșul Săptămânal</h3>
-                    <p class="mb-6 opacity-80 italic">Abonamentul de sănătate pentru familia ta.</p>
-                    <ul class="space-y-4 font-medium">
-                        <li>🥕 5kg legume de sezon mixte</li>
-                        <li>🚚 Livrare gratuită în fiecare Vineri</li>
-                        <li>🎁 O rețetă nouă în fiecare cutie</li>
-                    </ul>
-                    <div class="mt-10">
-                        <span class="text-4xl font-bold">85 lei</span> / săpt.
-                    </div>
-                </div>
-                <div class="md:w-1/2 p-10 flex flex-col justify-center text-center">
-                    <p class="text-stone-600 mb-8 font-light">Uită de cozile la supermarket. Primește prospețime direct de la fermier.</p>
-                    <button onclick="subscribe('Coș Săptămânal')" class="bg-orange-500 text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition active:scale-95">Abonează-te Acum</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="recenzii" class="container mx-auto px-6 py-20">
-        <h2 class="text-4xl font-bold text-center mb-16 italic">Ce spun clienții noștri</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 italic">
-                <div class="text-orange-400 mb-4 text-xl">★★★★★</div>
-                <p class="text-stone-600 mb-6">"Roșiile au gustul celor din grădina bunicilor. Nu se compară cu nimic din ce găsesc în magazin!"</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-stone-200"></div>
-                    <span class="font-bold text-stone-900">Maria Ionescu</span>
-                </div>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 italic">
-                <div class="text-orange-400 mb-4 text-xl">★★★★★</div>
-                <p class="text-stone-600 mb-6">"Abonamentul săptămânal mi-a salvat sâmbetele. Legumele sunt proaspete și rezistă mult mai mult."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-stone-200"></div>
-                    <span class="font-bold text-stone-900">Andrei Popa</span>
-                </div>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 italic">
-                <div class="text-orange-400 mb-4 text-xl">★★★★★</div>
-                <p class="text-stone-600 mb-6">"O inițiativă minunată! Ador faptul că totul este bio și că pot vedea exact unde cresc legumele."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-stone-200"></div>
-                    <span class="font-bold text-stone-900">Elena Vasilescu</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="bg-stone-100 py-20">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="bg-white p-10 rounded-3xl shadow-lg">
-                    <h2 class="text-3xl font-bold mb-6">Contactează-ne</h2>
-                    <form id="contactForm" class="space-y-4">
-                        <input type="text" placeholder="Numele tău" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-green-500 outline-none">
-                        <input type="email" placeholder="Email-ul tău" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-green-500 outline-none">
-                        <textarea placeholder="Cum te putem ajuta?" rows="4" class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-green-500 outline-none"></textarea>
-                        <button type="submit" class="w-full bg-green-700 text-white py-4 rounded-xl font-bold hover:bg-green-800 transition">Trimite Mesaj</button>
-                    </form>
-                    <div class="mt-8 pt-8 border-t space-y-2 text-stone-600">
-                        <p>📍 Satul Verde, Str. Principală 45</p>
-                        <p>📞 07xx xxx xxx</p>
-                        <p>📧 contact@gradinaproaspata.ro</p>
-                    </div>
-                </div>
-                <div class="h-full min-h-[400px] rounded-3xl overflow-hidden shadow-lg">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.814324203112!2d26.1018!3d44.4378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDI2JzE2LjEiTiAyNsKwMDYnMDYuNSJF!5e0!3m2!1sro!2sro!4v1630000000000!5m2!1sro!2sro" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-stone-900 text-stone-400 py-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-white font-bold mb-4 tracking-widest uppercase">Grădina Proaspătă</p>
-            <p class="text-sm">© 2026 Fermă Bio Locală. Toate drepturile rezervate.</p>
-        </div>
-    </footer>
-
-    <div id="notification" class="fixed bottom-8 right-8 bg-stone-900 text-white px-8 py-4 rounded-2xl shadow-2xl translate-y-24 opacity-0 transition-all duration-500 pointer-events-none z-[100]">
-        Produs adăugat!
+<section id="jurnal" class="section">
+    <h2>Activități lunare și Recoltă</h2>
+    
+    <div class="month-tabs">
+        <button class="month-btn" onclick="openMonth(event, 'Ianuarie')">Ian</button>
+        <button class="month-btn" onclick="openMonth(event, 'Februarie')">Feb</button>
+        <button class="month-btn active" onclick="openMonth(event, 'Martie')">Mar</button>
+        <button class="month-btn" onclick="openMonth(event, 'Aprilie')">Apr</button>
+        <button class="month-btn" onclick="openMonth(event, 'Mai')">Mai</button>
+        <button class="month-btn" onclick="openMonth(event, 'Iunie')">Iun</button>
+        <button class="month-btn" onclick="openMonth(event, 'Iulie')">Iul</button>
+        <button class="month-btn" onclick="openMonth(event, 'August')">Aug</button>
+        <button class="month-btn" onclick="openMonth(event, 'Septembrie')">Sep</button>
+        <button class="month-btn" onclick="openMonth(event, 'Octombrie')">Oct</button>
+        <button class="month-btn" onclick="openMonth(event, 'Noiembrie')">Noi</button>
+        <button class="month-btn" onclick="openMonth(event, 'Decembrie')">Dec</button>
     </div>
 
-    <script>
-        // Obiect care reține cantitatea pentru fiecare produs
-        const inventar = {
-            rosii: 20,
-            morcovi: 20,
-            ardei: 20,
-            dovlecei: 20
-        };
+    <div id="Ianuarie" class="blog-content">
+        <div class="article-card">
+            <h3>❄️ Ianuarie - Planuri la gura sobei</h3>
+            <p>Este timpul planificării. Am ales semințele și am stabilit unde vom planta tomatele și unde vom pune cartofii pe cei 1000mp.</p>
+        </div>
+    </div>
 
-        let cart = 0;
-        const countDisplay = document.getElementById('cartCount');
-        const notification = document.getElementById('notification');
+    <div id="Februarie" class="blog-content">
+        <div class="article-card">
+            <h3>✂️ Februarie - Pregătirea solarului</h3>
+            <p>Am început curățarea solarului de 12 metri lungime. Am verificat sistemul de aerisire laterală și am tăiat murele fără ghimpi.</p>
+        </div>
+    </div>
 
-        function showNotif(msg) {
-            notification.innerText = msg;
-            notification.classList.remove('translate-y-24', 'opacity-0');
-            setTimeout(() => {
-                notification.classList.add('translate-y-24', 'opacity-0');
-            }, 3000);
-        }
+    <div id="Martie" class="blog-content active">
+        <div class="article-card">
+            <h3>🌱 Martie: Luna renașterii în solarul nostru</h3>
+            <p>Deși afară vântul încă mai pișcă, în solarul nostru de 60mp e deja primăvară în toată regula! Iată ce am făcut săptămâna aceasta:</p>
+            
+            <ul>
+                <li><strong>Semănatul trufandalelor:</strong> Am pus deja primele rânduri de ridichi rotunde, salată creoală și ceapă verde. Datorită sistemului nostru de aerisire laterală, plantele vor beneficia de aer proaspăt imediat ce soarele devine prea puternic.</li>
+                <li><strong>Startul pentru "Reginele Solarului":</strong> Am început semănatul semințelor de roșii Inimă de Bou și Roșii Cherry la interior.</li>
+                <li><strong>Pregătirea grădinii mari:</strong> Pe cei 1000mp am început trasarea rândurilor pentru cartofii timpurii.</li>
+            </ul>
+            
+            <p><i>💡 Sfat de grădinar:</i> Nu vă grăbiți cu roșiile direct în pământ până când temperatura solului nu trece constant de 12°C.</p>
+            
+            <p><strong>📦 Vrei primele trufandale în Aprilie?</strong> Rezervă-ți acum unul din cele 15 coșuri săptămânale!</p>
+        </div>
+    </div>
 
-        function addToCart(key, name) {
-            // Verificăm dacă mai avem stoc
-            if (inventar[key] > 0) {
-                // Scădem din inventar
-                inventar[key]--;
-                
-                // Actualizăm afișajul cifrei de stoc
-                document.getElementById(`stoc-${key}`).innerText = inventar[key];
-                
-                // Adăugăm în coș
-                cart++;
-                countDisplay.innerText = cart;
-                
-                showNotif(`🛒 1kg de ${name} a fost adăugat în coș!`);
+    <div id="Aprilie" class="blog-content"><div class="article-card"><h3>🥬 Aprilie</h3><p>Prima recoltă de salată și ridichi!</p></div></div>
+    <div id="Mai" class="blog-content"><div class="article-card"><h3>🌼 Mai</h3><p>Plantăm roșiile, busuiocul și crăițele.</p></div></div>
+    <div id="Iunie" class="blog-content"><div class="article-card"><h3>🥔 Iunie</h3><p>Cartofi noi și mazăre fragedă.</p></div></div>
+    <div id="Iulie" class="blog-content"><div class="article-card"><h3>🍅 Iulie</h3><p>Explozie de gust: roșiile de solar sunt coapte.</p></div></div>
+    <div id="August" class="blog-content"><div class="article-card"><h3>🍇 August</h3><p>Mure mari și dulci, ardei și vinete.</p></div></div>
+    <div id="Septembrie" class="blog-content"><div class="article-card"><h3>🍯 Septembrie</h3><p>Pregătiri pentru cămară: gogoșari și rădăcinoase.</p></div></div>
+    <div id="Octombrie" class="blog-content"><div class="article-card"><h3>🍂 Octombrie</h3><p>Recoltarea finală și protejarea solului.</p></div></div>
+    <div id="Noiembrie" class="blog-content"><div class="article-card"><h3>🌳 Noiembrie</h3><p>Plantăm noi pomi fructiferi pe margini.</p></div></div>
+    <div id="Decembrie" class="blog-content"><div class="article-card"><h3>🪵 Decembrie</h3><p>Analiza anului și planuri pentru sezonul următor.</p></div></div>
+</section>
 
-                // Dacă stocul s-a terminat, schimbăm stilul cardului
-                if (inventar[key] === 0) {
-                    const card = document.getElementById(`prod-${key}`);
-                    card.classList.add('out-of-stock');
-                    const btn = card.querySelector('button');
-                    btn.innerText = "Stoc Epuizat";
-                    btn.disabled = true;
-                }
-            } else {
-                showNotif(`❌ Ne pare rău, nu mai avem ${name} în stoc.`);
-            }
-        }
+<section id="galerie" class="section">
+    <h2>Imagini din Grădină</h2>
+    <div class="photo-grid">
+        <div class="photo-item"><img src="solar.jpg" alt="Solarul de 60mp"></div>
+        <div class="photo-item"><img src="mure.jpg" alt="Mure dupa taiere"></div>
+        <div class="photo-item"><img src="rasaduri.jpg" alt="Rasaduri Martie"></div>
+        <div class="photo-item"><img src="gradina.jpg" alt="Vedere Gradina 1000mp"></div>
+    </div>
+</section>
 
-        function subscribe(name) {
-            showNotif(`✨ Te-ai abonat cu succes la ${name}!`);
-        }
+<section id="contact" class="section" style="background: var(--verde-deschis);">
+    <h2>Rezervă un Coș de Legume</h2>
+    <form>
+        <input type="text" placeholder="Numele tău">
+        <input type="text" placeholder="Telefon">
+        <textarea placeholder="Ce legume preferi în coșul tău?" rows="4"></textarea>
+        <button type="button" class="btn" onclick="alert('Mesajul a fost trimis! Te vom contacta curând.')">VREAU ABONAMENT</button>
+    </form>
+</section>
 
-        document.getElementById('contactForm').onsubmit = (e) => {
-            e.preventDefault();
-            showNotif("📧 Mesajul tău a fost trimis. Revenim curând!");
-            e.target.reset();
-        };
+<footer>
+    <p>&copy; 2026 Grădina Noastră. Toate drepturile rezervate.</p>
+</footer>
 
-        document.getElementById('cartBtn').onclick = () => {
-            alert(cart > 0 ? `Ai ${cart} kg de legume în coș. Vrei să finalizezi comanda?` : "Coșul tău este gol.");
-        };
-    </script>
+<script>
+    function openMonth(evt, monthName) {
+        var i, blogcontent, monthlinks;
+        blogcontent = document.getElementsByClassName("blog-content");
+        for (i = 0; i < blogcontent.length; i++) { blogcontent[i].style.display = "none"; }
+        monthlinks = document.getElementsByClassName("month-btn");
+        for (i = 0; i < monthlinks.length; i++) { monthlinks[i].classList.remove("active"); }
+        document.getElementById(monthName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+
 </body>
 </html>
