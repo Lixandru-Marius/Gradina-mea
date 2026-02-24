@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grădina Proaspătă | Legume Bio & Abonamente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Outfit:wght@300;400;600&display=swap');
+        body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Crimson Pro', serif; }
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover; background-position: center;
+        }
+        /* Stil pentru produs când stocul este zero */
+        .out-of-stock {
+            opacity: 0.6;
+            filter: grayscale(0.8);
+        }
+        .out-of-stock button {
+            background-color: #d1d5db !important;
+            color: #9ca3af !important;
+            border-color: #d1d5db !important;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <nav class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <span class="text-2xl">🌿</span>
+                <span class="text-xl font-bold tracking-tight text-stone-900">GRĂDINA PROASPĂTĂ</span>
+            </div>
+            <div class="hidden md:flex space-x-6 font-medium">
+                <a href="#informatii" class="hover:text-green-700 transition">Informații</a>
+                <a href="#magazin" class="hover:text-green-700 transition">Legume</a>
+                <a href="#abonamente" class="hover:text-green-700 transition">Abonamente</a>
+                <a href="#recenzii" class="hover:text-green-700 transition">Recenzii</a>
+                <a href="#contact" class="hover:text-green-700 transition">Contact</a>
+            </div>
+            <button id="cartBtn" class="bg-green-700 text-white px-5 py-2 rounded-full hover:bg-green-800 transition active:scale-95">
+                Coș (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero-gradient h-[60vh] flex items-center justify-center text-center text-white">
+        <div class="px-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">Direct din grădină pe masa ta.</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto opacity-90 font-light">Legume 100% naturale, culese în dimineața livrării.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#magazin" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-bold transition">Cumpără Acum</a>
+                <a href="#abonamente" class="bg-white text-green-900 px-8 py-3 rounded-lg font-bold hover:bg-stone-100 transition">Vezi Abonamente</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="informatii" class="container mx-auto px-6 py-20 border-b border-stone-200">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6">Povestea Grădinii Noastre</h2>
+                <p class="text-stone-600 mb-4 leading-relaxed">
+                    Totul a început din dorința de a readuce pe masa familiilor gustul autentic al legumelor de altădată. Folosim metode de agricultură regenerativă și nu utilizăm pesticide chimice.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <span class="text-2xl text-green-700">🌱</span>
+                        <div>
+                            <h4 class="font-bold text-lg">Certificat Bio</h4>
+                            <p class="text-stone-500">Toate semințele noastre sunt organice și netratate.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="text-2xl text-green-700">🚜</span>
+                        <div>
+                            <h4 class="font-bold text-lg">Producție Locală</h4>
+                            <p class="text-stone-500">Suntem o mică fermă de familie situată la doar 30km de oraș.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-stone-200 rounded-3xl h-80 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&q=80&w=800" 
+                     alt="Fermier lucrând" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section id="magazin" class="container mx-auto px-6 py-20">
+        <h2 class="text-4xl font-bold mb-12 text-center">Produse de Sezon</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <div id="prod-rosii" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
+                <img src="https://images.unsplash.com/photo-1566385101042-1a000c1268c4?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
+                <h3 class="text-xl font-bold">Roșii Cherry Bio</h3>
+                <p class="text-stone-500 text-sm mb-1">12,00 lei/kg</p>
+                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-rosii">20</span> kg</p>
+                <button onclick="addToCart('rosii', 'Roșii Cherry')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
+            </div>
+
+            <div id="prod-morcovi" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
+                <img src="https://images.unsplash.com/photo-1590779033100-9f60705a2f3b?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
+                <h3 class="text-xl font-bold">Morcovi Dulci</h3>
+                <p class="text-stone-500 text-sm mb-1">6,50 lei/kg</p>
+                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-morcovi">20</span> kg</p>
+                <button onclick="addToCart('morcovi', 'Morcovi')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
+            </div>
+
+            <div id="prod-ardei" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
+                <img src="https://images.unsplash.com/photo-1592419044706-39796d40f98c?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
+                <h3 class="text-xl font-bold">Ardei Capia</h3>
+                <p class="text-stone-500 text-sm mb-1">15,00 lei/kg</p>
+                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-ardei">20</span> kg</p>
+                <button onclick="addToCart('ardei', 'Ardei Capia')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
+            </div>
+
+            <div id="prod-dovlecei" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 p-4 hover:shadow-xl transition group">
+                <img src="https://images.unsplash.com/photo-1615485245453-9f23d580a5a8?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition">
+                <h3 class="text-xl font-bold">Dovlecei Fragezi</h3>
+                <p class="text-stone-500 text-sm mb-1">8,00 lei/kg</p>
+                <p class="text-xs font-bold text-green-600 mb-4 italic">Stoc disponibil: <span id="stoc-dovlecei">20</span> kg</p>
+                <button onclick="addToCart('dovlecei', 'Dovlecei')" class="w-full border-2 border-green-700 text-green-700 py-2 rounded-lg font-bold hover:bg-green-700 hover:text-white transition">Adaugă în coș</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="abonamente" class="py-20 bg-green-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-10 bg-green-900 text-white">
+                    <h3 class="text-3xl font-bold mb-4 font-serif text-green-400 italic">Coșul Săptămânal</h3>
+                    <p class="mb-6 opacity-80 italic">Abonamentul de sănătate pentru familia ta.</p>
+                    <ul class="space-y-4 font-medium">
+                        <li>🥕 5kg legume de sezon mixte</li>
+                        <li>🚚 Livrare gratuită în fiecare Vineri</li>
+                        <li>🎁 O rețetă nouă în fiecare cutie</li>
+                    </ul>
+                    <div class="mt-10">
+                        <span class="text-4xl font-bold">85 lei</span> / săpt.
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-10 flex flex-col justify-center text-center">
+                    <p class="text-stone-600 mb-8 font-light">Uită de cozile la supermarket. Primește prospețime direct de la fermier.</p>
+                    <button onclick="subscribe('Coș Săptămânal')" class="bg-orange-500 text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition active:scale-95">Abonează-te Acum</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recenzii" class="container mx-auto px-6 py-20">
+        <h2 class="text-4xl font-bold text-center mb-16 italic">Ce spun clienții noștri</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 italic">
+                <div class="text-orange-400 mb-4 text-xl">★★★★★</div>
+                <p class="text-stone-600 mb-6">"Roșiile au gustul celor din grădina bunicilor. Nu se compară cu nimic din ce găsesc în magazin!"</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-stone-200"></div>
+                    <span class="font-bold text-stone-900">Maria Ionescu</span>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 italic">
+                <div class="text-orange-400 mb-4 text-xl">★★★★★</div>
+                <p class="text-stone-600 mb-6">"Abonamentul săptămânal mi-a salvat sâmbetele. Legumele sunt proaspete și rezistă mult mai mult."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-stone-200"></div>
+                    <span class="font-bold text-stone-900">Andrei Popa</span>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 italic">
+                <div class="text-orange-400 mb-4 text-xl">★★★★★</div>
+                <p class="text-stone-600 mb-6">"O inițiativă minunată! Ador faptul că totul este bio și că pot vedea exact unde cresc legumele."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-stone-200"></div>
+                    <span class="font-bold text-stone-900">Elena Vasilescu</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-stone-100 py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white p-10 rounded-3xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6">Contactează-ne</h2>
+                    <form id="contactForm" class="space-y-4">
+                        <input type="text" placeholder="Numele tău" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-green-500 outline-none">
+                        <input type="email" placeholder="Email-ul tău" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-green-500 outline-none">
+                        <textarea placeholder="Cum te putem ajuta?" rows="4" class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+                        <button type="submit" class="w-full bg-green-700 text-white py-4 rounded-xl font-bold hover:bg-green-800 transition">Trimite Mesaj</button>
+                    </form>
+                    <div class="mt-8 pt-8 border-t space-y-2 text-stone-600">
+                        <p>📍 Satul Verde, Str. Principală 45</p>
+                        <p>📞 07xx xxx xxx</p>
+                        <p>📧 contact@gradinaproaspata.ro</p>
+                    </div>
+                </div>
+                <div class="h-full min-h-[400px] rounded-3xl overflow-hidden shadow-lg">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.814324203112!2d26.1018!3d44.4378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDI2JzE2LjEiTiAyNsKwMDYnMDYuNSJF!5e0!3m2!1sro!2sro!4v1630000000000!5m2!1sro!2sro" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone-900 text-stone-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-white font-bold mb-4 tracking-widest uppercase">Grădina Proaspătă</p>
+            <p class="text-sm">© 2026 Fermă Bio Locală. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <div id="notification" class="fixed bottom-8 right-8 bg-stone-900 text-white px-8 py-4 rounded-2xl shadow-2xl translate-y-24 opacity-0 transition-all duration-500 pointer-events-none z-[100]">
+        Produs adăugat!
+    </div>
+
+    <script>
+        // Obiect care reține cantitatea pentru fiecare produs
+        const inventar = {
+            rosii: 20,
+            morcovi: 20,
+            ardei: 20,
+            dovlecei: 20
+        };
+
+        let cart = 0;
+        const countDisplay = document.getElementById('cartCount');
+        const notification = document.getElementById('notification');
+
+        function showNotif(msg) {
+            notification.innerText = msg;
+            notification.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                notification.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        function addToCart(key, name) {
+            // Verificăm dacă mai avem stoc
+            if (inventar[key] > 0) {
+                // Scădem din inventar
+                inventar[key]--;
+                
+                // Actualizăm afișajul cifrei de stoc
+                document.getElementById(`stoc-${key}`).innerText = inventar[key];
+                
+                // Adăugăm în coș
+                cart++;
+                countDisplay.innerText = cart;
+                
+                showNotif(`🛒 1kg de ${name} a fost adăugat în coș!`);
+
+                // Dacă stocul s-a terminat, schimbăm stilul cardului
+                if (inventar[key] === 0) {
+                    const card = document.getElementById(`prod-${key}`);
+                    card.classList.add('out-of-stock');
+                    const btn = card.querySelector('button');
+                    btn.innerText = "Stoc Epuizat";
+                    btn.disabled = true;
+                }
+            } else {
+                showNotif(`❌ Ne pare rău, nu mai avem ${name} în stoc.`);
+            }
+        }
+
+        function subscribe(name) {
+            showNotif(`✨ Te-ai abonat cu succes la ${name}!`);
+        }
+
+        document.getElementById('contactForm').onsubmit = (e) => {
+            e.preventDefault();
+            showNotif("📧 Mesajul tău a fost trimis. Revenim curând!");
+            e.target.reset();
+        };
+
+        document.getElementById('cartBtn').onclick = () => {
+            alert(cart > 0 ? `Ai ${cart} kg de legume în coș. Vrei să finalizezi comanda?` : "Coșul tău este gol.");
+        };
+    </script>
+</body>
+</html>
