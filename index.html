@@ -112,22 +112,18 @@
 <section id="contact" class="section" style="background: var(--verde-deschis);">
     <h2>Rezervă un Coș de Legume</h2>
     
-   <!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/xdalyjvv"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
+  
+
+     <form action="https://formspree.io/f/mnjblrrw" method="POST">
+        
+     <input type="hidden" name="_next" value="https://lixandru-marius.github.io/Gradina-mea/multumesc.html?v=10">   
+
+        <input type="text" name="nume" placeholder="Numele tău" required>
+        <input type="text" name="telefon" placeholder="Telefon" required>
+        <textarea name="mesaj" placeholder="Ce legume preferi în coșul tău?" rows="4"></textarea>
+        
+        <button type="submit" class="btn">TESTARE COMANDA</button>
+    </form>
 </section>
 
 <footer>
