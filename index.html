@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jurnalul Grădinii Noastre - 1000mp de Sănătate</title>
-    <meta name="description" content="Legume proaspete și naturale livrate la domiciliu din grădina noastră de 1000mp. Rezervă un coș săptămânal de sezon!">
-
     <style>
         :root {
             --verde-solar: #2d5a27;
@@ -107,12 +105,12 @@
             <ul>
                 <li><strong>Semănatul trufandalelor:</strong> Am pus deja primele rânduri de ridichi rotunde, salată creoală și ceapă verde. Datorită sistemului nostru de aerisire laterală, plantele vor beneficia de aer proaspăt imediat ce soarele devine prea puternic.</li>
                 <li><strong>Startul pentru "Reginele Solarului":</strong> Am început semănatul semințelor de roșii Inimă de Bou și Roșii Cherry la interior.</li>
-                <li><strong>Pregătirea grădinii mari:</strong> Pe cei 1000mp am început trasarea rândurilor pentru cartofii timpurii.</li>
+                <li><strong>Pregătirea grăinii mari:</strong> Pe cei 1000mp am început trasarea rândurilor pentru cartofii timpurii.</li>
             </ul>
             
             <p><i>💡 Sfat de grădinar:</i> Nu vă grăbiți cu roșiile direct în pământ până când temperatura solului nu trece constant de 12°C.</p>
             
-            <p><strong>📦 Vrei primele trufandale în Aprilie?</strong> Rezervă-ți acum unul din cele 15 coșuri săptămânale!</p>
+            <p><strong>📦 Vrei primele trufandale în Aprilie?</strong> Rezervă-și acum unul din cele 15 coșuri săptămânale!</p>
         </div>
     </div>
 
@@ -139,11 +137,11 @@
 
 <section id="contact" class="section" style="background: var(--verde-deschis);">
     <h2>Rezervă un Coș de Legume</h2>
-    <form>
-        <input type="text" placeholder="Numele tău">
-        <input type="text" placeholder="Telefon">
-        <textarea placeholder="Ce legume preferi în coșul tău?" rows="4"></textarea>
-        <button type="button" class="btn" onclick="alert('Mesajul a fost trimis! Te vom contacta curând.')">VREAU ABONAMENT</button>
+    <form action="https://formspree.io/f/xpqjkopy" method="POST">
+        <input type="text" name="nume" placeholder="Numele tău" required>
+        <input type="text" name="telefon" placeholder="Telefon" required>
+        <textarea name="mesaj" placeholder="Ce legume preferi în coșul tău?" rows="4"></textarea>
+        <button type="submit" class="btn">VREAU ABONAMENT</button>
     </form>
 </section>
 
@@ -165,3 +163,4 @@
 
 </body>
 </html>
+
