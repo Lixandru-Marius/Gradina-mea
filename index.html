@@ -83,47 +83,21 @@
         <button class="month-btn" onclick="openMonth(event, 'Decembrie')">Dec</button>
     </div>
 
-    <div id="Ianuarie" class="blog-content">
-        <div class="article-card">
-            <h3>❄️ Ianuarie - Planuri la gura sobei</h3>
-            <p>Este timpul planificării. Am ales semințele și am stabilit unde vom planta tomatele și unde vom pune cartofii pe cei 1000mp.</p>
-        </div>
-    </div>
-
-    <div id="Februarie" class="blog-content">
-        <div class="article-card">
-            <h3>✂️ Februarie - Pregătirea solarului</h3>
-            <p>Am început curățarea solarului de 12 metri lungime. Am verificat sistemul de aerisire laterală și am tăiat murele fără ghimpi.</p>
-        </div>
-    </div>
-
+    <div id="Ianuarie" class="blog-content"><div class="article-card"><h3>❄️ Ianuarie</h3><p>Planificarea semințelor.</p></div></div>
+    <div id="Februarie" class="blog-content"><div class="article-card"><h3>✂️ Februarie</h3><p>Pregătirea solarului.</p></div></div>
     <div id="Martie" class="blog-content active">
         <div class="article-card">
             <h3>🌱 Martie: Luna renașterii în solarul nostru</h3>
-            <p>Deși afară vântul încă mai pișcă, în solarul nostru de 60mp e deja primăvară în toată regula! Iată ce am făcut săptămâna aceasta:</p>
-            
+            <p>Deși afară vântul încă mai pișcă, în solarul nostru de 60mp e deja primăvară în toată regula!</p>
             <ul>
-                <li><strong>Semănatul trufandalelor:</strong> Am pus deja primele rânduri de ridichi rotunde, salată creoală și ceapă verde. Datorită sistemului nostru de aerisire laterală, plantele vor beneficia de aer proaspăt imediat ce soarele devine prea puternic.</li>
-                <li><strong>Startul pentru "Reginele Solarului":</strong> Am început semănatul semințelor de roșii Inimă de Bou și Roșii Cherry la interior.</li>
-                <li><strong>Pregătirea grăinii mari:</strong> Pe cei 1000mp am început trasarea rândurilor pentru cartofii timpurii.</li>
+                <li><strong>Semănatul trufandalelor:</strong> Ridichi, salată și ceapă verde.</li>
+                <li><strong>Startul pentru roșii:</strong> Semănatul Inimă de Bou la interior.</li>
+                <li><strong>Grădina mare:</strong> Pregătirea pentru cartofii timpurii.</li>
             </ul>
-            
-            <p><i>💡 Sfat de grădinar:</i> Nu vă grăbiți cu roșiile direct în pământ până când temperatura solului nu trece constant de 12°C.</p>
-            
-            <p><strong>📦 Vrei primele trufandale în Aprilie?</strong> Rezervă-și acum unul din cele 15 coșuri săptămânale!</p>
         </div>
     </div>
-
-    <div id="Aprilie" class="blog-content"><div class="article-card"><h3>🥬 Aprilie</h3><p>Prima recoltă de salată și ridichi!</p></div></div>
-    <div id="Mai" class="blog-content"><div class="article-card"><h3>🌼 Mai</h3><p>Plantăm roșiile, busuiocul și crăițele.</p></div></div>
-    <div id="Iunie" class="blog-content"><div class="article-card"><h3>🥔 Iunie</h3><p>Cartofi noi și mazăre fragedă.</p></div></div>
-    <div id="Iulie" class="blog-content"><div class="article-card"><h3>🍅 Iulie</h3><p>Explozie de gust: roșiile de solar sunt coapte.</p></div></div>
-    <div id="August" class="blog-content"><div class="article-card"><h3>🍇 August</h3><p>Mure mari și dulci, ardei și vinete.</p></div></div>
-    <div id="Septembrie" class="blog-content"><div class="article-card"><h3>🍯 Septembrie</h3><p>Pregătiri pentru cămară: gogoșari și rădăcinoase.</p></div></div>
-    <div id="Octombrie" class="blog-content"><div class="article-card"><h3>🍂 Octombrie</h3><p>Recoltarea finală și protejarea solului.</p></div></div>
-    <div id="Noiembrie" class="blog-content"><div class="article-card"><h3>🌳 Noiembrie</h3><p>Plantăm noi pomi fructiferi pe margini.</p></div></div>
-    <div id="Decembrie" class="blog-content"><div class="article-card"><h3>🪵 Decembrie</h3><p>Analiza anului și planuri pentru sezonul următor.</p></div></div>
-</section>
+    <div id="Aprilie" class="blog-content"><div class="article-card"><h3>🥬 Aprilie</h3><p>Prima recoltă!</p></div></div>
+    </section>
 
 <section id="galerie" class="section">
     <h2>Imagini din Grădină</h2>
@@ -137,10 +111,15 @@
 
 <section id="contact" class="section" style="background: var(--verde-deschis);">
     <h2>Rezervă un Coș de Legume</h2>
+    
     <form action="https://formspree.io/f/xpqjkopy" method="POST">
+        
+        <input type="hidden" name="_next" value="https://lixandru-marius.github.io/Gradina-mea/multumesc.html">
+
         <input type="text" name="nume" placeholder="Numele tău" required>
         <input type="text" name="telefon" placeholder="Telefon" required>
         <textarea name="mesaj" placeholder="Ce legume preferi în coșul tău?" rows="4"></textarea>
+        
         <button type="submit" class="btn">VREAU ABONAMENT</button>
     </form>
 </section>
